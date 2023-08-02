@@ -1,6 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+final _firebaseAuthentication = FirebaseAuth.instance;
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -13,6 +16,67 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
   final _form = GlobalKey<FormState>();
   late String _enteredEmail;
   late String _enteredPassword;
+  bool _isAuthenticating = false;
+
+  bool _validateAndSave() {
+    if (_form.currentState!.validate()) {
+      _form.currentState!.save();
+      return true;
+    }
+    return false;
+  }
+
+  Future<void> _signUserIn() async {
+    if (!_validateAndSave()) {
+      return;
+    }
+    setState(() {
+      _isAuthenticating = true;
+    });
+    try {
+      final userCredential =
+          await _firebaseAuthentication.signInWithEmailAndPassword(
+              email: _enteredEmail, password: _enteredPassword);
+    } on FirebaseAuthException catch (err) {
+      if (err.code == "email-already-in-use") {}
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(err.message ?? "Authentication failed"),
+        ),
+      );
+    } finally {
+      setState(() {
+        _isAuthenticating = false;
+      });
+    }
+  }
+
+  Future<void> _signUserUp() async {
+    if (!_validateAndSave()) {
+      return;
+    }
+    setState(() {
+      _isAuthenticating = true;
+    });
+    try {
+      final userCredential =
+          await _firebaseAuthentication.createUserWithEmailAndPassword(
+              email: _enteredEmail, password: _enteredPassword);
+    } on FirebaseAuthException catch (err) {
+      if (err.code == "email-already-in-use") {}
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(err.message ?? "Authentication failed"),
+        ),
+      );
+    } finally {
+      setState(() {
+        _isAuthenticating = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,32 +180,40 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                                   child: SizedBox(
                                     height: 50,
                                     width: double.maxFinite,
-                                    child: TabBarView(
-                                      children: [
-                                        ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Theme.of(context)
-                                                  .colorScheme
-                                                  .outlineVariant,
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      20, 0, 20, 0)),
-                                          child: const Text("Sign In"),
-                                        ),
-                                        ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Theme.of(context)
-                                                  .colorScheme
-                                                  .outlineVariant,
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      20, 0, 20, 0)),
-                                          child: const Text("Sign Up"),
-                                        ),
-                                      ],
-                                    ),
+                                    child: _isAuthenticating
+                                        ? const Center(
+                                            child: CircularProgressIndicator(),
+                                          )
+                                        : TabBarView(
+                                            children: [
+                                              ElevatedButton(
+                                                onPressed: _signUserIn,
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      Theme.of(context)
+                                                          .colorScheme
+                                                          .outlineVariant,
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          20, 0, 20, 0),
+                                                ),
+                                                child: const Text("Sign In"),
+                                              ),
+                                              ElevatedButton(
+                                                onPressed: _signUserUp,
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      Theme.of(context)
+                                                          .colorScheme
+                                                          .outlineVariant,
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          20, 0, 20, 0),
+                                                ),
+                                                child: const Text("Sign Up"),
+                                              ),
+                                            ],
+                                          ),
                                   ),
                                 )
                               ],
