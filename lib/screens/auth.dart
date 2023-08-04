@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 final _firebaseAuthentication = FirebaseAuth.instance;
 
@@ -12,222 +13,95 @@ class AuthScreen extends StatefulWidget {
   State<AuthScreen> createState() => _AuthScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
-  final _form = GlobalKey<FormState>();
-  late String _enteredEmail;
-  late String _enteredPassword;
+class _AuthScreenState extends State<AuthScreen> {
   bool _isAuthenticating = false;
 
-  bool _validateAndSave() {
-    if (_form.currentState!.validate()) {
-      _form.currentState!.save();
-      return true;
-    }
-    return false;
-  }
-
-  Future<void> _signUserIn() async {
-    if (!_validateAndSave()) {
-      return;
-    }
+  Future<void> _signInWithGoogle() async {
     setState(() {
       _isAuthenticating = true;
     });
-    try {
-      final userCredential =
-          await _firebaseAuthentication.signInWithEmailAndPassword(
-              email: _enteredEmail, password: _enteredPassword);
-    } on FirebaseAuthException catch (err) {
-      if (err.code == "email-already-in-use") {}
-      ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(err.message ?? "Authentication failed"),
-        ),
-      );
-    } finally {
-      setState(() {
-        _isAuthenticating = false;
-      });
-    }
-  }
+    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    GoogleSignInAuthentication? googleAuth = await googleUser!.authentication;
+    AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
-  Future<void> _signUserUp() async {
-    if (!_validateAndSave()) {
-      return;
-    }
+    UserCredential userCredential =
+        await _firebaseAuthentication.signInWithCredential(credential);
     setState(() {
-      _isAuthenticating = true;
+      _isAuthenticating = false;
     });
-    try {
-      final userCredential =
-          await _firebaseAuthentication.createUserWithEmailAndPassword(
-              email: _enteredEmail, password: _enteredPassword);
-    } on FirebaseAuthException catch (err) {
-      if (err.code == "email-already-in-use") {}
-      ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(err.message ?? "Authentication failed"),
-        ),
-      );
-    } finally {
-      setState(() {
-        _isAuthenticating = false;
-      });
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        body: SafeArea(
-          child: Stack(children: [
-            Container(
-              margin: const EdgeInsets.fromLTRB(10, 50, 10, 0),
-              width: double.infinity,
-              child: DefaultTextStyle(
-                style: TextStyle(
-                    fontSize: 35.0,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.secondaryContainer),
-                child: AnimatedTextKit(
-                  pause: const Duration(milliseconds: 3000),
-                  repeatForever: true,
-                  animatedTexts: [
-                    TypewriterAnimatedText(
-                      "Hello little,\nStep into a World of Fun and Learning! \nCome Inside and Explore!",
-                      speed: const Duration(milliseconds: 150),
-                      textStyle: GoogleFonts.lato(),
-                    ),
-                  ],
-                ),
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      body: SafeArea(
+        child: Stack(fit: StackFit.expand, children: [
+          Container(
+            margin: const EdgeInsets.fromLTRB(10, 200, 10, 0),
+            width: double.infinity,
+            child: DefaultTextStyle(
+              style: TextStyle(
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.secondaryContainer),
+              child: AnimatedTextKit(
+                pause: const Duration(milliseconds: 3000),
+                repeatForever: true,
+                animatedTexts: [
+                  TypewriterAnimatedText(
+                    "Hello little,\nStep into a World of Fun and Learning! \nCome Inside and Explore!",
+                    speed: const Duration(milliseconds: 150),
+                    textStyle: GoogleFonts.lato(),
+                  ),
+                ],
               ),
             ),
-            Center(
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 60,
+            child: Center(
               child: SingleChildScrollView(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Card(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .secondaryContainer
-                          .withOpacity(0.9),
-                      margin: const EdgeInsets.fromLTRB(20, 150, 20, 0),
-                      child: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Form(
-                            key: _form,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const TabBar(
-                                  tabs: [
-                                    Tab(
-                                      child: Text("Sign In"),
-                                    ),
-                                    Tab(
-                                      child: Text("Sign Up"),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child: TextFormField(
-                                    decoration: const InputDecoration(
-                                      labelText: "Email Address ",
-                                    ),
-                                    keyboardType: TextInputType.emailAddress,
-                                    autocorrect: false,
-                                    textCapitalization: TextCapitalization.none,
-                                    validator: (value) {
-                                      if (value == null ||
-                                          value.trim().isEmpty ||
-                                          !value.contains("@")) {
-                                        return "Please enter a valid Email.";
-                                      }
-                                      return null;
-                                    },
-                                    onSaved: (val) {
-                                      _enteredEmail = val!;
-                                    },
-                                  ),
-                                ),
-                                TextFormField(
-                                  decoration: const InputDecoration(
-                                    labelText: "Password ",
-                                  ),
-                                  obscureText: true,
-                                  validator: (value) {
-                                    if (value == null ||
-                                        value.trim().length < 8) {
-                                      return "Password must be at least 8 characters long.";
-                                    }
-                                    return null;
-                                  },
-                                  onSaved: (val) {
-                                    _enteredPassword = val!;
-                                  },
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: SizedBox(
-                                    height: 50,
-                                    width: double.maxFinite,
-                                    child: _isAuthenticating
-                                        ? const Center(
-                                            child: CircularProgressIndicator(),
-                                          )
-                                        : TabBarView(
-                                            children: [
-                                              ElevatedButton(
-                                                onPressed: _signUserIn,
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      Theme.of(context)
-                                                          .colorScheme
-                                                          .outlineVariant,
-                                                  padding:
-                                                      const EdgeInsets.fromLTRB(
-                                                          20, 0, 20, 0),
-                                                ),
-                                                child: const Text("Sign In"),
-                                              ),
-                                              ElevatedButton(
-                                                onPressed: _signUserUp,
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      Theme.of(context)
-                                                          .colorScheme
-                                                          .outlineVariant,
-                                                  padding:
-                                                      const EdgeInsets.fromLTRB(
-                                                          20, 0, 20, 0),
-                                                ),
-                                                child: const Text("Sign Up"),
-                                              ),
-                                            ],
-                                          ),
-                                  ),
-                                )
-                              ],
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      child: _isAuthenticating
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : ElevatedButton.icon(
+                              icon: Image.asset(
+                                "assets/images/Google__G__Logo.png",
+                                width: 25,
+                              ),
+                              onPressed: _signInWithGoogle,
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Theme.of(context)
+                                      .colorScheme
+                                      .secondaryContainer,
+                                  padding: const EdgeInsets.all(15)),
+                              label: Text(
+                                "SignIn with Google",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    )
                   ],
                 ),
               ),
             ),
-          ]),
-        ),
+          ),
+        ]),
       ),
     );
   }
