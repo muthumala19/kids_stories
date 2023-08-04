@@ -30,7 +30,7 @@ class CategoryItem extends StatelessWidget {
           category.title,
           style: GoogleFonts.aBeeZee(
             textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.secondaryContainer,
                 fontWeight: FontWeight.bold),
           ),
         ),
