@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '733551193068',
     projectId: 'kids-stories-67585',
     storageBucket: 'kids-stories-67585.appspot.com',
+    androidClientId: '733551193068-std0fvl0mnu2t7vi8cvvt2rhrano2s35.apps.googleusercontent.com',
     iosClientId: '733551193068-24cgndhi49s4pvvoo41t3d64bdifq2bl.apps.googleusercontent.com',
     iosBundleId: 'com.example.kidsStories',
   );
@@ -77,6 +78,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '733551193068',
     projectId: 'kids-stories-67585',
     storageBucket: 'kids-stories-67585.appspot.com',
+    androidClientId: '733551193068-std0fvl0mnu2t7vi8cvvt2rhrano2s35.apps.googleusercontent.com',
     iosClientId: '733551193068-cf53d4565e6qpsbppiue9kuj835lf8a2.apps.googleusercontent.com',
     iosBundleId: 'com.example.kidsStories.RunnerTests',
   );
