@@ -5,6 +5,7 @@ import 'package:kids_stories/screens/categories.dart';
 class SideDrawer extends StatelessWidget {
   const SideDrawer({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     final firebaseAuthentication = FirebaseAuth.instance;

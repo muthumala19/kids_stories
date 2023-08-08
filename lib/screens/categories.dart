@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kids_stories/data/data.dart';
+import 'package:kids_stories/widgets/bottom_navigation_bar.dart';
 import 'package:kids_stories/widgets/side_drawer.dart';
 
 import '../widgets/category_item.dart';
@@ -13,6 +14,8 @@ class CategoriesScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         drawer: const SideDrawer(),
+        bottomNavigationBar: const BottomNavigationTabs(),
+
         appBar: AppBar(
           title: Text(
             "Kids Categories",
