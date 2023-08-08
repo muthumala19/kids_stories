@@ -15,7 +15,6 @@ class CategoriesScreen extends StatelessWidget {
       child: Scaffold(
         drawer: const SideDrawer(),
         bottomNavigationBar: const BottomNavigationTabs(),
-
         appBar: AppBar(
           title: Text(
             "Kids Categories",
