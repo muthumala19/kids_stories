@@ -73,17 +73,17 @@ class _AuthScreenState extends State<AuthScreen> {
                           ? const Center(
                               child: CircularProgressIndicator(),
                             )
-                          : SizedBox(width: double.infinity,
-                            child: ElevatedButton.icon(
+                          : SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton.icon(
                                 icon: Image.asset(
                                   "assets/images/Google__G__Logo.png",
                                   width: 25,
                                 ),
                                 onPressed: _signInWithGoogle,
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: Theme.of(context)
-                                        .colorScheme
-                                        .secondary,
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.secondary,
                                     padding: const EdgeInsets.all(15)),
                                 label: Text(
                                   "SignIn with Google",
@@ -96,7 +96,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                               .primary),
                                 ),
                               ),
-                          ),
+                            ),
                     )
                   ],
                 ),

@@ -16,7 +16,3 @@ const categories = [
   Category(id: 'c12', title: 'Educational', color: Color(0xFF4CAF50)),
   Category(id: 'c13', title: 'Bedtime Stories', color: Color(0xFF7986CB)),
 ];
-
-
-
-

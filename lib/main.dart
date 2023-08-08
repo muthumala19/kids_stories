@@ -47,7 +47,7 @@ class App extends StatelessWidget {
             );
           }
           if (snapshot.hasData) {
-            return const CategoryScreen();
+            return const CategoriesScreen();
           } else {
             return const AuthScreen();
           }

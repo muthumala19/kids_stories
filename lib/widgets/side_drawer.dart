@@ -1,41 +1,54 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kids_stories/screens/categories.dart';
 
 class SideDrawer extends StatelessWidget {
   const SideDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final firebaseAuthentication = FirebaseAuth.instance;
+    final userEmail = firebaseAuthentication.currentUser!.email;
     return Drawer(
-      // Add a ListView to the drawer. This ensures the user can scroll
-      // through the options in the drawer if there isn't enough vertical
-      // space to fit everything.
       child: ListView(
-        // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
+          DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Theme.of(context).colorScheme.secondaryContainer,
             ),
-            child: Text('Drawer Header'),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              textBaseline: TextBaseline.alphabetic,
+              children: [
+                CircleAvatar(
+                  radius: 50,
+                  child: Image.asset('assets/images/avatar.png'),
+                ),
+                Container(
+                    margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: Text(userEmail!)),
+              ],
+            ),
           ),
           ListTile(
-            title: const Text('Item 1'),
+            leading: const Icon(Icons.home_outlined),
+            title: const Text('Home'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (ctx) => const CategoriesScreen()));
             },
           ),
           ListTile(
-            title: const Text('Item 2'),
+            leading: const Icon(Icons.logout),
+            title: const Text('Sign Out'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              FirebaseAuth.instance.signOut();
             },
           ),
         ],
       ),
     );
-    ;
   }
 }

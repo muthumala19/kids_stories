@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kids_stories/data/data.dart';
@@ -6,8 +5,8 @@ import 'package:kids_stories/widgets/side_drawer.dart';
 
 import '../widgets/category_item.dart';
 
-class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({Key? key}) : super(key: key);
+class CategoriesScreen extends StatelessWidget {
+  const CategoriesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,17 +14,6 @@ class CategoryScreen extends StatelessWidget {
       child: Scaffold(
         drawer: const SideDrawer(),
         appBar: AppBar(
-
-          actions: [
-            IconButton(
-              style: IconButton.styleFrom(
-                foregroundColor: Theme.of(context).colorScheme.primary
-              ),
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                },
-                icon: const Icon(Icons.logout))
-          ],
           title: Text(
             "Kids Categories",
             style: GoogleFonts.aBeeZee(
@@ -45,8 +33,6 @@ class CategoryScreen extends StatelessWidget {
                 Theme.of(context).colorScheme.primaryContainer,
                 Theme.of(context).colorScheme.primaryContainer,
                 Theme.of(context).colorScheme.secondaryContainer,
-
-
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -56,8 +42,8 @@ class CategoryScreen extends StatelessWidget {
           child: GridView(
             padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:1 ,
-              childAspectRatio: 9/2,
+              crossAxisCount: 1,
+              childAspectRatio: 9 / 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             ),
