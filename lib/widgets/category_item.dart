@@ -19,7 +19,8 @@ class CategoryItem extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               category.color.withOpacity(0.55),
-              category.color.withOpacity(0.9)
+              category.color.withOpacity(0.9),
+              category.color.withOpacity(0.9),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -30,7 +31,8 @@ class CategoryItem extends StatelessWidget {
           category.title,
           style: GoogleFonts.aBeeZee(
             textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).colorScheme.secondaryContainer,
+                color: Theme.of(context).colorScheme.primary,
+
                 fontWeight: FontWeight.bold),
           ),
         ),

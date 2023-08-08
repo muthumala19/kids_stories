@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kids_stories/data/data.dart';
+import 'package:kids_stories/widgets/side_drawer.dart';
 
 import '../widgets/category_item.dart';
 
@@ -12,9 +13,14 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        drawer: const SideDrawer(),
         appBar: AppBar(
+
           actions: [
             IconButton(
+              style: IconButton.styleFrom(
+                foregroundColor: Theme.of(context).colorScheme.primary
+              ),
                 onPressed: () {
                   FirebaseAuth.instance.signOut();
                 },
@@ -24,22 +30,22 @@ class CategoryScreen extends StatelessWidget {
             "Kids Categories",
             style: GoogleFonts.aBeeZee(
                 textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.secondaryContainer,
+                    color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold),
                 fontSize: 25),
             softWrap: true,
           ),
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         ),
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Theme.of(context).colorScheme.primary,
-                Theme.of(context).colorScheme.primary,
-                Theme.of(context).colorScheme.primary,
-                Theme.of(context).colorScheme.primary,
-                Theme.of(context).colorScheme.secondary,
+                Theme.of(context).colorScheme.primaryContainer,
+                Theme.of(context).colorScheme.primaryContainer,
+                Theme.of(context).colorScheme.primaryContainer,
+                Theme.of(context).colorScheme.secondaryContainer,
+
 
               ],
               begin: Alignment.topCenter,
@@ -50,8 +56,8 @@ class CategoryScreen extends StatelessWidget {
           child: GridView(
             padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 3 / 2,
+              crossAxisCount:1 ,
+              childAspectRatio: 9/2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             ),
