@@ -27,17 +27,27 @@ class StoriesScreen extends StatelessWidget {
                 appBarTitle,
                 style: GoogleFonts.aBeeZee(
                     textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                     fontSize: 25),
                 softWrap: true,
               ),
-              backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+              backgroundColor: backgroundColor,
             )
           : null,
-      body: const Center(
-        child: Text("dummy"),
+      body: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(20),
+            topLeft: Radius.circular(20),
+          ),
+          color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
+        ),
+        height: double.infinity,
+        width: double.infinity,
+        margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+        child: const Center(child: Text("Hello")),
       ),
     );
   }

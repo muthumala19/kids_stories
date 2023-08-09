@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kids_stories/data/data.dart';
 import 'package:kids_stories/providers/bottom_navigation_provider.dart';
-import 'package:kids_stories/screens/category_list.dart';
+import 'package:kids_stories/screens/stories.dart';
 import 'package:kids_stories/widgets/bottom_navigation_bar.dart';
 import 'package:kids_stories/widgets/side_drawer.dart';
 
@@ -20,7 +20,7 @@ class CategoriesScreen extends ConsumerWidget {
         gradient: LinearGradient(
           colors: [
             Theme.of(context).colorScheme.primaryContainer,
-            Theme.of(context).colorScheme.secondaryContainer,
+            Theme.of(context).colorScheme.secondary,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
