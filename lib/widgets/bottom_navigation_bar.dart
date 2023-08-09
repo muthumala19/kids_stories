@@ -1,14 +1,17 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kids_stories/providers/bottom_navigation_provider.dart';
 
-class BottomNavigationTabs extends StatefulWidget {
+class BottomNavigationTabs extends ConsumerStatefulWidget {
   const BottomNavigationTabs({Key? key}) : super(key: key);
 
   @override
-  State<BottomNavigationTabs> createState() => _BottomNavigationTabsState();
+  ConsumerState<BottomNavigationTabs> createState() =>
+      _BottomNavigationTabsState();
 }
 
-class _BottomNavigationTabsState extends State<BottomNavigationTabs> {
+class _BottomNavigationTabsState extends ConsumerState<BottomNavigationTabs> {
   @override
   Widget build(BuildContext context) {
     return ConvexAppBar(
@@ -22,6 +25,15 @@ class _BottomNavigationTabsState extends State<BottomNavigationTabs> {
         TabItem(icon: Icons.favorite, title: 'Favourite'),
         TabItem(icon: Icons.trending_up_outlined, title: 'Trending'),
       ],
+      onTap: (index) {
+        setState(
+          () {
+            ref
+                .read(bottomNavBarSelectionProvider.notifier)
+                .selectBottomNavBar(index);
+          },
+        );
+      },
     );
   }
 }
