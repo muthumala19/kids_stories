@@ -35,7 +35,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primary,
+      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       body: SafeArea(
         child: Stack(fit: StackFit.expand, children: [
           Container(
@@ -45,7 +45,7 @@ class _AuthScreenState extends State<AuthScreen> {
               style: TextStyle(
                   fontSize: 40.0,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.secondaryContainer),
+                  color: Theme.of(context).colorScheme.primary),
               child: AnimatedTextKit(
                 pause: const Duration(milliseconds: 3000),
                 repeatForever: true,
@@ -73,26 +73,28 @@ class _AuthScreenState extends State<AuthScreen> {
                           ? const Center(
                               child: CircularProgressIndicator(),
                             )
-                          : ElevatedButton.icon(
-                              icon: Image.asset(
-                                "assets/images/Google__G__Logo.png",
-                                width: 25,
-                              ),
-                              onPressed: _signInWithGoogle,
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Theme.of(context)
-                                      .colorScheme
-                                      .secondaryContainer,
-                                  padding: const EdgeInsets.all(15)),
-                              label: Text(
-                                "SignIn with Google",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary),
+                          : SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton.icon(
+                                icon: Image.asset(
+                                  "assets/images/Google__G__Logo.png",
+                                  width: 25,
+                                ),
+                                onPressed: _signInWithGoogle,
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.secondary,
+                                    padding: const EdgeInsets.all(15)),
+                                label: Text(
+                                  "SignIn with Google",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary),
+                                ),
                               ),
                             ),
                     )
