@@ -1,13 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kids_stories/screens/categories.dart';
 
-class SideDrawer extends StatelessWidget {
+import '../providers/bottom_navigation_provider.dart';
+
+class SideDrawer extends ConsumerWidget {
   const SideDrawer({Key? key}) : super(key: key);
 
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final firebaseAuthentication = FirebaseAuth.instance;
     final userEmail = firebaseAuthentication.currentUser!.email;
     return Drawer(
@@ -37,8 +39,14 @@ class SideDrawer extends StatelessWidget {
             leading: const Icon(Icons.home_outlined),
             title: const Text('Home'),
             onTap: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (ctx) => const CategoriesScreen()));
+              ref
+                  .read(bottomNavBarSelectionProvider.notifier)
+                  .selectBottomNavBar(0);
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (ctx) => const CategoriesScreen(),
+                ),
+              );
             },
           ),
           ListTile(
