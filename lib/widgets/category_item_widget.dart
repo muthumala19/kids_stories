@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kids_stories/models/category.dart';
-import 'package:kids_stories/screens/stories.dart';
+import 'package:kids_stories/models/category_model.dart';
+
+import '../screens/story_list_for_category_screen.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({Key? key, required this.category}) : super(key: key);
@@ -23,7 +24,6 @@ class CategoryItem extends StatelessWidget {
         );
       },
       splashColor: Theme.of(context).primaryColor,
-      borderRadius: BorderRadius.circular(10),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
