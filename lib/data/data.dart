@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kids_stories/models/category.dart';
+import 'package:kids_stories/models/category_model.dart';
 
 const categories = [
   Category(id: 'c1', title: 'Fairy Tales', color: Color(0xFFE57373)),

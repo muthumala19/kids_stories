@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kids_stories/screens/auth.dart';
-import 'package:kids_stories/screens/categories.dart';
+import 'package:kids_stories/screens/auth_screen.dart';
+import 'package:kids_stories/screens/categories_screen.dart';
 
 import 'firebase_options.dart';
 
@@ -13,7 +13,9 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const ProviderScope(child: App(),));
+  runApp(const ProviderScope(
+    child: App(),
+  ));
 }
 
 class App extends StatelessWidget {
