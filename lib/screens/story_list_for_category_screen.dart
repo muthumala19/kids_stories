@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../models/category.dart';
+import '../models/category_model.dart';
 
 class StoriesScreen extends StatelessWidget {
   const StoriesScreen({
@@ -20,7 +20,6 @@ class StoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
       appBar: showAppBar
           ? AppBar(
               title: Text(
@@ -36,18 +35,24 @@ class StoriesScreen extends StatelessWidget {
               backgroundColor: backgroundColor,
             )
           : null,
+      backgroundColor: Theme.of(context).colorScheme.onSecondaryContainer,
       body: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(20),
-            topLeft: Radius.circular(20),
+        color: backgroundColor,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(20),
+              topLeft: Radius.circular(20),
+            ),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
           ),
-          color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
+          height: double.infinity,
+          width: double.infinity,
+          margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: const Center(
+            child: Text("Hello"),
+          ),
         ),
-        height: double.infinity,
-        width: double.infinity,
-        margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-        child: const Center(child: Text("Hello")),
       ),
     );
   }
