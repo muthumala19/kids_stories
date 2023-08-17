@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kids_stories/screens/categories_screen.dart';
+import 'package:kids_stories/screens/categories.dart';
 
 import '../providers/bottom_navigation_provider.dart';
 
