@@ -6,19 +6,21 @@ import 'package:kids_stories/providers/bottom_navigation_provider.dart';
 class BottomNavigationTabs extends ConsumerStatefulWidget {
   const BottomNavigationTabs({Key? key}) : super(key: key);
 
+
   @override
   ConsumerState<BottomNavigationTabs> createState() =>
       _BottomNavigationTabsState();
 }
 
 class _BottomNavigationTabsState extends ConsumerState<BottomNavigationTabs> {
+
   @override
   Widget build(BuildContext context) {
     return ConvexAppBar(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       activeColor: Theme.of(context).colorScheme.primary,
       color: Theme.of(context).colorScheme.primary,
-      initialActiveIndex: 0,
+      initialActiveIndex: ref.watch(bottomNavBarSelectionProvider),
       items: const [
         TabItem(icon: Icons.home_outlined, title: 'Home'),
         TabItem(icon: Icons.all_inclusive_outlined, title: 'All'),
