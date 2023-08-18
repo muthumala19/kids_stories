@@ -22,6 +22,7 @@ class StoriesScreen extends StatelessWidget {
     return Scaffold(
       appBar: showAppBar
           ? AppBar(
+              iconTheme: const IconThemeData(color: Colors.white),
               title: Text(
                 appBarTitle,
                 style: GoogleFonts.aBeeZee(
