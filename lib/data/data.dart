@@ -22,7 +22,8 @@ const List<Story> stories = [
   Story(
     id: '0',
     title: "The Quest for the Golden Friendship Flower",
-    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692444657/kids_stories_app/The%20Quest%20for%20the%20Golden%20Friendship%20Flower/rvuzzzob6prazoxjdwoa.png',
+    imageUrl:
+        'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692444657/kids_stories_app/The%20Quest%20for%20the%20Golden%20Friendship%20Flower/rvuzzzob6prazoxjdwoa.png',
     categories: ['c3', 'c9'],
     // Adventure, Friendship
     complexity: Complexity.challenging,
@@ -43,7 +44,8 @@ const List<Story> stories = [
   Story(
     id: '1',
     title: "The Quest for the Lost Crown",
-    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692445207/kids_stories_app/The%20Quest%20for%20the%20Lost%20Crown/eaxie5pjggioirifqijb.png',
+    imageUrl:
+        'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692445207/kids_stories_app/The%20Quest%20for%20the%20Lost%20Crown/eaxie5pjggioirifqijb.png',
     categories: ['c3'],
     // Adventure
     complexity: Complexity.challenging,
@@ -62,7 +64,8 @@ const List<Story> stories = [
   Story(
     id: '2',
     title: "The Enchanted Rose",
-    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692445587/kids_stories_app/The%20Enchanted%20Rose/canikhjeovcnbufddhiv.png',
+    imageUrl:
+        'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692445587/kids_stories_app/The%20Enchanted%20Rose/canikhjeovcnbufddhiv.png',
     categories: ['c1'],
     // Fairy Tales
     complexity: Complexity.simple,
@@ -80,7 +83,8 @@ const List<Story> stories = [
   Story(
     id: '3',
     title: "The Starlight Voyage",
-    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692445757/kids_stories_app/The%20Starlight%20Voyage/nmpcris6zwslmfcqqn86.png',
+    imageUrl:
+        'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692445757/kids_stories_app/The%20Starlight%20Voyage/nmpcris6zwslmfcqqn86.png',
     categories: ['c2'],
     // Fantasy
     complexity: Complexity.challenging,
@@ -94,5 +98,77 @@ const List<Story> stories = [
       "With the memories of her starlight voyage etched in her heart, Nova returned home. She became a storyteller, weaving together the stories of the stars and sharing them with people near and far. Her tales inspired others to look up at the night sky with a newfound sense of wonder, and the world became a place where dreams truly knew no bounds.",
     ],
   ),
-
+  Story(
+    id: '4',
+    title: "The Secret Garden's Enchantment",
+    imageUrl:
+        'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692464512/kids_stories_app/The%20Secret%20Garden%27s%20Enchantment/fgtuyful3dxkkdyawq9w.png',
+    categories: ['c1', 'c2', 'c5', 'c12'],
+    // Fairy Tales, Fantasy, Folktales, Educational
+    complexity: Complexity.challenging,
+    duration: 50,
+    paragraphs: [
+      "In a quiet village nestled between rolling hills and ancient forests, a young girl named Lily discovered a hidden gate that led to a world unlike any other. This enchanting garden, known as the Secret Garden, was a place of wonder and mystery, its beauty and magic transcending the boundaries of reality.",
+      "Lily was drawn to the garden's vibrant flowers, which glowed with colors not found in the ordinary world. She felt a sense of belonging as she wandered among the blooms, as if they whispered secrets only she could hear. Little did Lily know, the Secret Garden was a bridge between realms, a place where fantasy and reality converged.",
+      "One day, as Lily explored deeper into the garden, she encountered a talking rabbit named Oliver. With his impeccable manners and clever wit, Oliver revealed that the garden was a gateway to various worlds. Each section of the garden represented a different realm, and only those with pure hearts could unlock their magic.",
+      "Lily and Oliver embarked on adventures that spanned across the realms, from the towering castles of fairy tales to the futuristic landscapes of science fiction. They solved riddles in the Mystery Woods, befriended fantastical creatures in the Animal Kingdom, and discovered long-lost artifacts in the Historical District.",
+      "As Lily's journeys continued, she formed unbreakable bonds with creatures and characters from all walks of life. Together, they overcame challenges, learned valuable lessons, and celebrated the beauty of friendship. The Secret Garden became a place where stories intertwined, blurring the lines between categories and genres.",
+      "Word of Lily's magical escapades spread, capturing the imagination of people far and wide. Children and adults alike gathered to hear her tales, and soon, the garden's influence extended beyond its borders. The village flourished as people embraced the spirit of adventure, and the garden's magic brought people together in ways they had never imagined.",
+      "Lily's adventures became legendary, and her story was told in the pages of picture books and educational texts. The Secret Garden's legacy extended to bedtime stories that whisked children away to dreams of magical realms, and its enchantment remained a source of joy and inspiration for generations to come.",
+    ],
+  ),
+  Story(
+    id: '5',
+    title: "The Celestial Friendship Quest",
+    imageUrl:
+        'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692465035/kids_stories_app/The%20Celestial%20Friendship%20Quest/vrlngzgk0k9cyfeqc4q4.png',
+    categories: ['c1', 'c2', 'c6'],
+    // Fairy Tales, Fantasy, Science Fiction
+    complexity: Complexity.challenging,
+    duration: 55,
+    paragraphs: [
+      "In a land where fairy tales mingled with science fiction, a young adventurer named Alex embarked on an extraordinary journey. Alex had always been fascinated by the stars and had dreams of exploring the cosmos. Little did they know that their dreams were about to become reality in the most unexpected way.",
+      "One night, while gazing at the night sky through a telescope, Alex noticed a shimmering portal among the stars. With a mixture of excitement and trepidation, they stepped through the portal and found themselves in a world that was both magical and futuristic. The sky was adorned with constellations that seemed to dance with life, and floating cities illuminated the horizon.",
+      "As Alex explored this new realm, they encountered a small, curious creature named Luna. Luna had the appearance of a mythical being, yet possessed advanced technology that allowed her to manipulate energy and matter. Together, they formed an unlikely but unbreakable friendship, bridging the gap between the fantastical and the technological.",
+      "Luna explained that their world was a harmonious blend of magic and science, and the two friends set out on a quest to restore balance to the cosmos. They traveled through vast forests inhabited by talking animals, delved into the mysteries of ancient artifacts, and even navigated through the labyrinthine passages of a floating library.",
+      "Their journey led them to the heart of a cosmic conflict, where they discovered that the celestial constellations were fading. Without the constellations' magic, the delicate equilibrium between science and magic was in jeopardy. Alex and Luna realized that they held the key to rekindling the stars' brilliance and restoring harmony.",
+      "Drawing on Luna's knowledge of energy manipulation and Alex's understanding of mythical tales, they devised a plan to revive the constellations. Through a combination of advanced technology and ancient incantations, they managed to ignite the stars' magic once more. The skies came alive with a breathtaking display of light and energy.",
+      "As the constellations regained their luminosity, the realm was infused with renewed vitality. The floating cities shimmered brighter than ever before, and the animals in the forest sang songs of gratitude. The friendship between Alex and Luna became a beacon of unity, proving that even in a world of diverse influences, true friendship could bridge any gap.",
+      "Their tale of adventure, friendship, and cosmic restoration spread across the realms, earning them a place in both the annals of science fiction and the pages of fairy tales. The story of Alex and Luna continued to inspire generations, reminding everyone that the bonds of friendship could transcend boundaries, whether they were made of stardust or code.",
+    ],
+  ),
+  Story(
+    id: '6',
+    title: "The Enchanted Explorer",
+    imageUrl:
+        'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692465971/kids_stories_app/The%20Enchanted%20Explorer/jaqovrmj6xj1e8cpxuxf.png',
+    categories: ['c1', 'c2', 'c9', 'c10', 'c11', 'c12'],
+    // Fairy Tales, Fantasy, Friendship, Historical Fiction, Picture Books, Educational
+    complexity: Complexity.challenging,
+    duration: 60,
+    paragraphs: [
+      "Once upon a time, in a land where fantasy met historical reality, lived a young adventurer named Maya. Maya's fascination with history and her love for the mystical made her an extraordinary explorer. With a satchel of maps and a heart full of curiosity, she set out on a journey that would bridge the gap between the past and the present.",
+      "Maya's quest began when she stumbled upon an ancient book filled with maps that led to hidden realms. Each map was imbued with a unique power, transporting her to places where time itself seemed to dance and weave. Armed with her historical knowledge and an adventurous spirit, Maya embarked on a voyage that transcended the boundaries of time.",
+      "Her first destination was a realm of medieval castles and chivalrous knights. Here, Maya discovered that history was not confined to books but lived on in the stories told by the stones themselves. She witnessed tournaments, befriended a curious court jester, and even helped a noble knight find his lost sword.",
+      "From there, Maya's journey took her to a world of myth and folklore, where creatures of legend roamed free. She encountered talking animals, wise old wizards, and mischievous fairies that could grant wishes. Through her interactions, Maya learned that the line between reality and myth was often thinner than she had ever imagined.",
+      "Her next adventure transported her to a distant future, where towering cities reached for the skies and advanced technology was intertwined with nature. Maya marveled at the ingenuity of mankind, yet she also discovered that the core of human emotions remained unchanged across the ages. In this futuristic landscape, she forged friendships that defied the boundaries of time.",
+      "Throughout her travels, Maya learned valuable lessons from each era she visited. The courage of the past, the magic of myths, and the innovation of the future all shaped her perspective. She came to understand that while times may change, the core values of kindness, friendship, and curiosity remained constant, connecting people across time and space.",
+      "As Maya returned to her own time, she carried the wisdom of her adventures with her. She chronicled her experiences in a series of books that blended history, fantasy, and futuristic imagination. The stories of the Enchanted Explorer became beloved across genres, inspiring generations to embrace the past, dream of the future, and find magic in the world around them.",
+    ],
+  ),
+  Story(
+    id: '7',
+    title: "Mia's Enchanted Orchestra",
+    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692469450/kids_stories_app/Mia%27s%20Enchanted%20Orchestra/vai7zhnayoigymszxasj.png',
+    categories: ['c12', 'c9'],
+    // 'Educational', 'Friendship'
+    complexity: Complexity.simple,
+    duration: 20,
+    paragraphs: [
+      "In a charming village surrounded by emerald forests and babbling brooks, lived a young girl named Mia. With her fingers graced by the magic of music, Mia could hear melodies in the rustling leaves and symphonies in the raindrops. She dreamed of forming an orchestra that would harmonize the natural world's melodies with her own compositions.",
+      "One day, as the sun painted the sky in hues of gold and rose, Mia stumbled upon a hidden glade deep within the forest. The glade was adorned with ancient instruments, each bearing a story of its own. Mia's heart fluttered with excitement – she knew that this was the place where her enchanted orchestra would come to life.",
+      "With fervor in her heart, Mia gathered the forgotten instruments and began to practice. Her violin hummed in harmony with the wind's gentle whisper, and the drums echoed the rhythm of the babbling brooks. Birds perched on branches to listen, and even the leaves seemed to dance to the enchanting melodies.",
+      "As days turned into weeks, word of Mia's enchanted orchestra spread throughout the village. Curious villagers gathered in the glade, their hearts touched by the music that transcended the ordinary. Mia's orchestra was more than just an arrangement of instruments – it was a symphony of nature and human spirit, woven together in perfect unity."
+    ],
+  ),
 ];
