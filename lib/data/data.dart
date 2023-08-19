@@ -22,7 +22,7 @@ const stories = [
   Story(
     id: '',
     title: "The Quest for the Golden Friendship Flower",
-    imageURL: '',
+    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692354664/kids_stories_app/The%20Quest%20for%20the%20Golden%20Friendship%20Flower/asmcxs1mzrm4duyhixaq.jpg',
     categories: ['c3', 'c9'],
     // Adventure, Friendship
     complexity: Complexity.challenging,
@@ -43,7 +43,7 @@ const stories = [
   Story(
     id: '',
     title: "The Quest for the Lost Crown",
-    imageURL: '',
+    imageUrl: '',
     categories: ['c3'],
     // Adventure
     complexity: Complexity.challenging,
@@ -62,7 +62,7 @@ const stories = [
   Story(
     id: '',
     title: "The Enchanted Rose",
-    imageURL: '',
+    imageUrl: '',
     categories: ['c1'],
     // Fairy Tales
     complexity: Complexity.simple,
@@ -80,7 +80,7 @@ const stories = [
   Story(
     id: '',
     title: "The Starlight Voyage",
-    imageURL: '',
+    imageUrl: '',
     categories: ['c2'],
     // Fantasy
     complexity: Complexity.challenging,

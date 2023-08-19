@@ -8,7 +8,7 @@ class Story {
   const Story({
     required this.id,
     required this.title,
-    required this.imageURL,
+    required this.imageUrl,
     required this.categories,
     required this.complexity,
     required this.duration,
@@ -17,7 +17,7 @@ class Story {
 
   final String id;
   final String title;
-  final String imageURL;
+  final String imageUrl;
   final List<String> categories;
   final Complexity complexity;
   final int duration;
