@@ -48,14 +48,17 @@ class StoryDetailsScreen extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: AspectRatio(
-                        aspectRatio: 5/3,
-                        child: Image.network(
-                          story.imageUrl,
-                          fit: BoxFit.cover,
-                                                  width: double.infinity,
+                    Hero(
+                      tag: story.id,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: AspectRatio(
+                          aspectRatio: 5/3,
+                          child: Image.network(
+                            story.imageUrl,
+                            fit: BoxFit.cover,
+                                                    width: double.infinity,
+                          ),
                         ),
                       ),
                     ),
@@ -70,7 +73,7 @@ class StoryDetailsScreen extends StatelessWidget {
                                 .bodyMedium!
                                 .copyWith(
                                     color:
-                                        Theme.of(context).colorScheme.primary),fontWeight: FontWeight.bold
+                                        Theme.of(context).colorScheme.primary),
                           ),
                           softWrap: true,
                         ))
