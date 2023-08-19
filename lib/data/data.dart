@@ -18,11 +18,11 @@ const categories = [
   Category(id: 'c13', title: 'Bedtime Stories', color: Color(0xFF7986CB)),
 ];
 
-const stories = [
+const List<Story> stories = [
   Story(
-    id: '',
+    id: '0',
     title: "The Quest for the Golden Friendship Flower",
-    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692354664/kids_stories_app/The%20Quest%20for%20the%20Golden%20Friendship%20Flower/asmcxs1mzrm4duyhixaq.jpg',
+    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692444657/kids_stories_app/The%20Quest%20for%20the%20Golden%20Friendship%20Flower/rvuzzzob6prazoxjdwoa.png',
     categories: ['c3', 'c9'],
     // Adventure, Friendship
     complexity: Complexity.challenging,
@@ -41,9 +41,9 @@ const stories = [
     ],
   ),
   Story(
-    id: '',
+    id: '1',
     title: "The Quest for the Lost Crown",
-    imageUrl: '',
+    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692445207/kids_stories_app/The%20Quest%20for%20the%20Lost%20Crown/eaxie5pjggioirifqijb.png',
     categories: ['c3'],
     // Adventure
     complexity: Complexity.challenging,
@@ -60,9 +60,9 @@ const stories = [
     ],
   ),
   Story(
-    id: '',
+    id: '2',
     title: "The Enchanted Rose",
-    imageUrl: '',
+    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692445587/kids_stories_app/The%20Enchanted%20Rose/canikhjeovcnbufddhiv.png',
     categories: ['c1'],
     // Fairy Tales
     complexity: Complexity.simple,
@@ -78,9 +78,9 @@ const stories = [
     ],
   ),
   Story(
-    id: '',
+    id: '3',
     title: "The Starlight Voyage",
-    imageUrl: '',
+    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692445757/kids_stories_app/The%20Starlight%20Voyage/nmpcris6zwslmfcqqn86.png',
     categories: ['c2'],
     // Fantasy
     complexity: Complexity.challenging,
