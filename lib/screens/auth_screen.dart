@@ -1,19 +1,20 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final _firebaseAuthentication = FirebaseAuth.instance;
 
-class AuthScreen extends StatefulWidget {
+class AuthScreen extends ConsumerStatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
   @override
-  State<AuthScreen> createState() => _AuthScreenState();
+  ConsumerState<AuthScreen> createState() => _AuthScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> {
+class _AuthScreenState extends ConsumerState<AuthScreen> {
   bool _isAuthenticating = false;
 
   Future<void> _signInWithGoogle() async {
@@ -25,11 +26,12 @@ class _AuthScreenState extends State<AuthScreen> {
     AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
-    UserCredential userCredential =
-        await _firebaseAuthentication.signInWithCredential(credential);
-    setState(() {
-      _isAuthenticating = false;
-    });
+    await _firebaseAuthentication.signInWithCredential(credential);
+    setState(
+      () {
+        _isAuthenticating = false;
+      },
+    );
   }
 
   @override
@@ -91,9 +93,10 @@ class _AuthScreenState extends State<AuthScreen> {
                                       .textTheme
                                       .titleLarge!
                                       .copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
                                 ),
                               ),
                             ),

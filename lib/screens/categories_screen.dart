@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kids_stories/data/data.dart';
 import 'package:kids_stories/providers/bottom_navigation_provider.dart';
-import 'package:kids_stories/screens/category_list.dart';
-import 'package:kids_stories/widgets/bottom_navigation_bar.dart';
-import 'package:kids_stories/widgets/side_drawer.dart';
+import 'package:kids_stories/screens/story_list_for_category_screen.dart';
+import 'package:kids_stories/widgets/side_drawer_widget.dart';
 
-import '../widgets/category_item.dart';
+import '../widgets/bottom_navigation_bar_widget.dart';
+import '../widgets/category_item_widget.dart';
 
 class CategoriesScreen extends ConsumerWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class CategoriesScreen extends ConsumerWidget {
         gradient: LinearGradient(
           colors: [
             Theme.of(context).colorScheme.primaryContainer,
-            Theme.of(context).colorScheme.secondaryContainer,
+            Theme.of(context).colorScheme.secondary,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -50,7 +50,7 @@ class CategoriesScreen extends ConsumerWidget {
           activeAppBarTitle = "All";
           activeContent = StoriesScreen(
             backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-            list: const [],
+            list: stories,
             showAppBar: false,
             appBarTitle: activeAppBarTitle,
           );
