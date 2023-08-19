@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kids_stories/data/data.dart';
 import 'package:kids_stories/models/category_model.dart';
 
 import '../screens/story_list_for_category_screen.dart';
@@ -12,12 +13,18 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        final selectedStories = stories.where(
+          (element) {
+            return element.categories.contains(category.id);
+          },
+        ).toList();
+        // for(){};
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (ctx) => StoriesScreen(
               backgroundColor: category.color.withOpacity(0.3),
               appBarTitle: category.title,
-              list: const [],
+              list: selectedStories,
               showAppBar: true,
             ),
           ),

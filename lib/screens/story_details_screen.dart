@@ -39,7 +39,7 @@ class StoryDetailsScreen extends StatelessWidget {
               color: Theme.of(context).colorScheme.secondary.withOpacity(0.8),
               borderRadius: BorderRadius.circular(20),
             ),
-            margin: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+            margin: const EdgeInsets.all(10),
             padding: const EdgeInsets.all(8),
             clipBehavior: Clip.hardEdge,
             child: Column(
@@ -67,10 +67,10 @@ class StoryDetailsScreen extends StatelessWidget {
                           style: GoogleFonts.aBeeZee(
                             textStyle: Theme.of(context)
                                 .textTheme
-                                .bodyLarge!
+                                .bodyMedium!
                                 .copyWith(
                                     color:
-                                        Theme.of(context).colorScheme.primary),
+                                        Theme.of(context).colorScheme.primary),fontWeight: FontWeight.bold
                           ),
                           softWrap: true,
                         ))

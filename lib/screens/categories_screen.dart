@@ -50,7 +50,7 @@ class CategoriesScreen extends ConsumerWidget {
           activeAppBarTitle = "All";
           activeContent = StoriesScreen(
             backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-            list: const [],
+            list: stories,
             showAppBar: false,
             appBarTitle: activeAppBarTitle,
           );
