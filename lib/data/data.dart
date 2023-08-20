@@ -159,7 +159,8 @@ const List<Story> stories = [
   Story(
     id: '7',
     title: "Mia's Enchanted Orchestra",
-    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692469450/kids_stories_app/Mia%27s%20Enchanted%20Orchestra/vai7zhnayoigymszxasj.png',
+    imageUrl:
+        'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692469450/kids_stories_app/Mia%27s%20Enchanted%20Orchestra/vai7zhnayoigymszxasj.png',
     categories: ['c12', 'c9'],
     // 'Educational', 'Friendship'
     complexity: Complexity.simple,
@@ -171,4 +172,36 @@ const List<Story> stories = [
       "As days turned into weeks, word of Mia's enchanted orchestra spread throughout the village. Curious villagers gathered in the glade, their hearts touched by the music that transcended the ordinary. Mia's orchestra was more than just an arrangement of instruments – it was a symphony of nature and human spirit, woven together in perfect unity."
     ],
   ),
+  Story(
+    id: '8',
+    title: "Leo's Galactic Quest",
+    imageUrl:
+        'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692499003/kids_stories_app/Leo%27s%20Galactic%20Quest/zg3lys0qivdm6t9duwd7.png',
+    categories: ['c6', 'c9'],
+    // 'Science Fiction', 'Friendship'
+    complexity: Complexity.simple,
+    duration: 23,
+    paragraphs: [
+      "In a quaint cottage nestled at the edge of a small village, lived a boy named Leo. His eyes held the glint of distant galaxies, and his mind was an endless canvas of constellations. Leo's greatest desire was to embark on a galactic quest that would take him beyond the stars and into the heart of the universe.",
+      "One night, as the moon cast a silvery glow over the landscape, Leo discovered an old star map tucked away in his grandfather's attic. The map depicted celestial wonders and hidden cosmic trails, a treasure trove of secrets waiting to be unveiled. Leo's heart raced with anticipation – he knew that this star map held the key to his cosmic aspirations.",
+      "With unwavering determination, Leo charted a course among the stars. Each constellation became a guidepost, and each comet a fleeting companion. He encountered planets dressed in vibrant hues and met extraterrestrial beings who spoke in riddles. As he ventured deeper into the cosmos, Leo realized that the universe was a symphony of wonder and mystery.",
+      "As the years passed, Leo returned to his village with tales that ignited the imaginations of young and old alike. The quaint cottage became a hub of galactic inspiration, and the star map found a new home on Leo's wall, a testament to his intrepid journey. And while Leo's feet remained planted on Earth, his spirit forever wandered among the stars."
+    ],
+  ),
+  Story(
+    id: '9',
+    title: "Zara and the Enchanted Forest",
+    imageUrl: 'https://res.cloudinary.com/dgvv3j3st/image/upload/v1692499599/kids_stories_app/Zara%20and%20the%20Enchanted%20Forest/rayqzeycbujunoqchea6.png',
+    categories: ['c2', 'c9'],
+    // 'Fantasy', 'Friendship'
+    complexity: Complexity.simple,
+    duration: 24,
+    paragraphs: [
+      "In a picturesque village nestled between towering mountains and lush valleys, lived a spirited girl named Zara. Her laughter echoed through meadows, and her eyes held the wisdom of ancient trees. Zara's heart yearned for adventure, and she dreamt of exploring the depths of an enchanted forest rumored to be magical.",
+      "One misty morning, as sunlight pierced through the mist like golden threads, Zara stumbled upon an old map tucked within the pages of a dusty book. The map depicted a forest teeming with mythical creatures and hidden wonders. Zara's heart raced with excitement – she knew that this map held the key to the mysterious forest she had longed to discover.",
+      "With a backpack filled with provisions and courage in her heart, Zara embarked on her journey. Moss-covered paths led her deeper into the woods, where fireflies lit the way and gentle streams whispered secrets. Zara encountered mischievous fairies who played pranks and encountered a wise old owl who shared tales of the forest's magic.",
+      "As the days turned into weeks, Zara's connection with the forest grew stronger. She befriended creatures big and small, and her laughter intertwined with the rustling leaves. The enchanted forest revealed its secrets one by one, and Zara felt like a part of its timeless tapestry.",
+      "When Zara returned to her village, she brought with her stories of the enchanted forest's wonders. The villagers gathered around, enchanted by her tales, and the old dusty book became a cherished relic. Zara's heart remained forever entwined with the magic of the forest, and her spirit continued to dance among the ancient trees."
+    ],
+  )
 ];
