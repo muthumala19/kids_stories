@@ -53,8 +53,18 @@ class StoriesScreen extends StatelessWidget {
           width: double.infinity,
           margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: list.isEmpty
-              ? const Center(
-                  child: Text("OOPs.! Nothing to show."),
+              ? Center(
+                  child: Text(
+                    "OOPs.! Nothing to show.",
+                    style: GoogleFonts.aBeeZee(
+                        textStyle:
+                            Theme.of(context).textTheme.titleLarge!.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                        fontSize: 25),
+                    softWrap: true,
+                  ),
                 )
               : ListView.builder(
                   itemCount: list.length,
