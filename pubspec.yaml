@@ -74,6 +74,20 @@ flutter:
     - assets/images/Google__G__Logo.png
     - assets/images/avatar.png
     - assets/images/auth_screen_background.png
+    - assets/category_images/c1.png
+    - assets/category_images/c2.png
+    - assets/category_images/c3.png
+    - assets/category_images/c4.png
+    - assets/category_images/c5.png
+    - assets/category_images/c6.png
+    - assets/category_images/c7.png
+    - assets/category_images/c8.png
+    - assets/category_images/c9.png
+    - assets/category_images/c10.png
+    - assets/category_images/c11.png
+    - assets/category_images/c12.png
+    - assets/category_images/c13.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
