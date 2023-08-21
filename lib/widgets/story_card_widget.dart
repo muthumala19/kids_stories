@@ -25,7 +25,6 @@ class StoryCard extends StatelessWidget {
     double cardMargin = 10;
     double cardBorderRadius = 10;
     double cardElevation = 2;
-    double placeHolderImageHeight = 200;
     int maxLinesOfTitle = 1;
     return Card(
       elevation: cardElevation,
@@ -42,12 +41,14 @@ class StoryCard extends StatelessWidget {
           children: [
             Hero(
               tag: story.id,
-              child: FadeInImage(
-                placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(story.imageUrl),
-                fit: BoxFit.cover,
-                height: placeHolderImageHeight,
-                width: double.infinity,
+              child: AspectRatio(
+                aspectRatio: 5 / 3,
+                child: FadeInImage(
+                  placeholder: MemoryImage(kTransparentImage),
+                  image: NetworkImage(story.imageUrl),
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                ),
               ),
             ),
             Positioned(

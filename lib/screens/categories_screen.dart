@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kids_stories/data/data.dart';
 import 'package:kids_stories/providers/bottom_navigation_provider.dart';
 import 'package:kids_stories/screens/story_list_for_category_screen.dart';
 import 'package:kids_stories/widgets/side_drawer_widget.dart';
 
+import '../data/data.dart';
 import '../widgets/bottom_navigation_bar_widget.dart';
-import '../widgets/category_item_widget.dart';
+import '../widgets/category_items_list_widget.dart';
 
 class CategoriesScreen extends ConsumerWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -15,40 +15,14 @@ class CategoriesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     int activeTabIndex = ref.watch(bottomNavBarSelectionProvider);
-    Widget activeContent = Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Theme.of(context).colorScheme.primaryContainer,
-            Theme.of(context).colorScheme.secondary,
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
-      child: GridView(
-        padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          childAspectRatio: 9 / 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-        ),
-        children: [
-          for (final category in categories)
-            CategoryItem(
-              category: category,
-            )
-        ],
-      ),
-    );
+    Widget activeContent = const CategoryItemsList();
     String activeAppBarTitle = "Kids Story Categories";
 
     switch (activeTabIndex) {
       case 1:
         {
           activeAppBarTitle = "All";
-          activeContent = StoriesScreen(
+          activeContent = activeContent = StoriesScreen(
             backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
             list: stories,
             showAppBar: false,

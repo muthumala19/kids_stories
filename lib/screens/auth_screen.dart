@@ -37,8 +37,17 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-      body: SafeArea(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fitHeight,
+            image: AssetImage(
+              "assets/images/auth_screen_background.png",
+            ),
+          ),
+        ),
         child: Stack(fit: StackFit.expand, children: [
           Container(
             margin: const EdgeInsets.fromLTRB(10, 200, 10, 0),
@@ -55,7 +64,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                   TypewriterAnimatedText(
                     "Hello little,\nStep into a World of Fun and Learning! \nCome Inside and Explore!",
                     speed: const Duration(milliseconds: 150),
-                    textStyle: GoogleFonts.lato(),
+                    textStyle: GoogleFonts.aBeeZee(
+                        color: Theme.of(context).colorScheme.primaryContainer),
                   ),
                 ],
               ),
@@ -75,7 +85,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                           ? const Center(
                               child: CircularProgressIndicator(),
                             )
-                          : SizedBox(
+                          : Container(
+                              margin: const EdgeInsets.all(20),
                               width: double.infinity,
                               child: ElevatedButton.icon(
                                 icon: Image.asset(
