@@ -9,12 +9,24 @@ import '../data/data.dart';
 import '../widgets/bottom_navigation_bar_widget.dart';
 import '../widgets/category_items_list_widget.dart';
 
-class CategoriesScreen extends ConsumerWidget {
+class CategoriesScreen extends ConsumerStatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends ConsumerState<CategoriesScreen> {
+  @override
+  void initState() {
+    super.initState();
+    fetchFirestoreStories();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     int activeTabIndex = ref.watch(bottomNavBarSelectionProvider);
+
     Widget activeContent = const CategoryItemsList();
     String activeAppBarTitle = "Kids Story Categories";
 

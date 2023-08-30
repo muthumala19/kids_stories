@@ -77,36 +77,37 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
           height: double.infinity,
           width: double.infinity,
           margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-          child:AnimatedBuilder(
-                  animation: _animationController,
-                  builder: (BuildContext context, Widget? child) {
-                    return SlideTransition(
-                      position: Tween(
-                        begin: const Offset(0, 1),
-                        end: const Offset(0, 0),
-                      ).animate(
-                        CurvedAnimation(
-                            parent: _animationController,
-                            curve: Curves.easeInOut),
-                      ),
-                      child: child,
-                    );
-                  },
-                  child:  widget.list.isEmpty
-                      ? Center(
+          child: AnimatedBuilder(
+            animation: _animationController,
+            builder: (BuildContext context, Widget? child) {
+              return SlideTransition(
+                position: Tween(
+                  begin: const Offset(0, 1),
+                  end: const Offset(0, 0),
+                ).animate(
+                  CurvedAnimation(
+                      parent: _animationController, curve: Curves.easeInOut),
+                ),
+                child: child,
+              );
+            },
+            child: widget.list.isEmpty
+                ? Center(
                     child: Text(
                       "OOPs.! Nothing to show.",
                       style: GoogleFonts.aBeeZee(
-                          textStyle:
-                          Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
                           fontSize: 25),
                       softWrap: true,
                     ),
                   )
-                      : ListView.builder(
+                : ListView.builder(
                     itemCount: widget.list.length,
                     itemBuilder: (context, index) => StoryCard(
                       story: widget.list[index],
@@ -119,7 +120,7 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
                       },
                     ),
                   ),
-                ),
+          ),
         ),
       ),
     );
