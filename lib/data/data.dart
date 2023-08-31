@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kids_stories/models/category_model.dart';
-import 'package:kids_stories/models/story_model.dart';
 
 const categories = [
   Category(
@@ -84,29 +82,6 @@ const categories = [
   ),
 ];
 
-List<Story> stories = [];
-
-Future<void> fetchFirestoreStories() async {
-  QuerySnapshot querySnapshot =
-      await FirebaseFirestore.instance.collection('stories').get();
-  for (var doc in querySnapshot.docs) {
-    stories.add(
-      Story(
-        id: doc.id,
-        title: doc['title'],
-        imageUrl: doc['imageUrl'],
-        categories:
-            (doc['categories'] as List).map((item) => item as String).toList(),
-        complexity: Complexity.values
-            .firstWhere((e) => e.toString() == doc['complexity']),
-        duration: doc['duration'],
-        paragraphs:
-            (doc['paragraphs'] as List).map((e) => e as String).toList(),
-      ),
-    );
-  }
-}
-//
 // const List<Story> stories = [
 //   Story(
 //     id: '0',
