@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:kids_stories/data/data.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kids_stories/models/category_model.dart';
+import 'package:kids_stories/providers/stories_provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../screens/story_list_for_category_screen.dart';
 
-class CategoryItem extends StatelessWidget {
+class CategoryItem extends ConsumerWidget {
   const CategoryItem({Key? key, required this.category}) : super(key: key);
   final Category category;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     double titleFontSize = 15;
     double cardMargin = 10;
     double cardBorderRadius = 10;
@@ -25,7 +26,7 @@ class CategoryItem extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          final selectedStories = stories.where(
+          final selectedStories = ref.watch(storiesProvider).where(
             (element) {
               return element.categories.contains(category.id);
             },
