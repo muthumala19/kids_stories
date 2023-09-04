@@ -55,17 +55,6 @@ class _CategoryScreenState extends ConsumerState<CategoriesScreen> {
           );
           break;
         }
-      case 3:
-        {
-          activeAppBarTitle = "Trending";
-          activeContent = StoriesScreen(
-            backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-            list: const [],
-            showAppBar: false,
-            appBarTitle: activeAppBarTitle,
-          );
-          break;
-        }
     }
 
     return SafeArea(
