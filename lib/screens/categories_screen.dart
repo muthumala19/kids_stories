@@ -46,7 +46,7 @@ class _CategoryScreenState extends ConsumerState<CategoriesScreen> {
         }
       case 2:
         {
-          activeAppBarTitle = "Favourites";
+          activeAppBarTitle = "Completed";
           activeContent = StoriesScreen(
             backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
             list: const [],

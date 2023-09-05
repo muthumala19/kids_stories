@@ -22,7 +22,7 @@ class _BottomNavigationTabsState extends ConsumerState<BottomNavigationTabs> {
       items: const [
         TabItem(icon: Icons.home_outlined, title: 'Home'),
         TabItem(icon: Icons.all_inclusive_outlined, title: 'All'),
-        TabItem(icon: Icons.favorite, title: 'Favourite'),
+        TabItem(icon: Icon(Icons.done_all_rounded,color: Colors.blue), title: 'Completed'),
       ],
       onTap: (index) {
         setState(
