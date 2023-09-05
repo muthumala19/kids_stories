@@ -45,6 +45,8 @@ dependencies:
   flutter_riverpod: ^2.3.6
   transparent_image: ^2.0.1
   cloud_firestore: ^4.8.4
+  sqflite: ^2.3.0
+  path: ^1.8.3
 
 
 
