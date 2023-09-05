@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kids_stories/widgets/mark_as_read_trait_widget.dart';
 import 'package:kids_stories/widgets/story_card_trait_widget.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -39,6 +40,7 @@ class StoryCard extends StatelessWidget {
         },
         child: Stack(
           children: [
+
             Hero(
               tag: story.id,
               child: AspectRatio(
@@ -97,6 +99,7 @@ class StoryCard extends StatelessWidget {
                 ),
               ),
             ),
+            MarkAsRead(id: story.id, isTappable: false),
           ],
         ),
       ),

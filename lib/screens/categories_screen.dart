@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kids_stories/providers/bottom_navigation_provider.dart';
+import 'package:kids_stories/providers/mark_as_read_provider.dart';
 import 'package:kids_stories/providers/stories_provider.dart';
 import 'package:kids_stories/screens/story_list_for_category_screen.dart';
 import 'package:kids_stories/widgets/side_drawer_widget.dart';
@@ -22,6 +23,7 @@ class _CategoryScreenState extends ConsumerState<CategoriesScreen> {
   void initState() {
     super.initState();
     ref.read(storiesProvider.notifier).fetchFirestoreStories();
+    ref.read(markAsReadProvider.notifier).loadCompletedStoryIdList();
   }
 
   @override
@@ -35,10 +37,13 @@ class _CategoryScreenState extends ConsumerState<CategoriesScreen> {
     switch (activeTabIndex) {
       case 1:
         {
+          final favouriteStories = ref.watch(markAsReadProvider);
           activeAppBarTitle = "All";
           activeContent = activeContent = StoriesScreen(
             backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-            list: stories,
+            list: stories
+                .where((element) => !favouriteStories.contains(element.id))
+                .toList(),
             showAppBar: false,
             appBarTitle: activeAppBarTitle,
           );
@@ -46,10 +51,14 @@ class _CategoryScreenState extends ConsumerState<CategoriesScreen> {
         }
       case 2:
         {
+          final List<Story> favouriteStories = ref
+              .watch(markAsReadProvider)
+              .map((id) => stories.firstWhere((story) => story.id == id))
+              .toList();
           activeAppBarTitle = "Completed";
           activeContent = StoriesScreen(
             backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-            list: const [],
+            list: favouriteStories,
             showAppBar: false,
             appBarTitle: activeAppBarTitle,
           );

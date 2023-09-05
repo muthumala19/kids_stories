@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kids_stories/widgets/mark_as_read_trait_widget.dart';
 
 import '../models/story_model.dart';
 
@@ -53,17 +54,20 @@ class StoryDetailsScreen extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: AspectRatio(
-                          aspectRatio: 5/3,
+                          aspectRatio: 5 / 3,
                           child: Image.network(
                             story.imageUrl,
                             fit: BoxFit.cover,
-                                                    width: double.infinity,
+                            width: double.infinity,
                           ),
                         ),
                       ),
                     ),
                   ],
-                ),const SizedBox(height: 15,),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
                 ...story.paragraphs
                     .map((paragraph) => Text(
                           "$paragraph\n",
@@ -77,7 +81,26 @@ class StoryDetailsScreen extends StatelessWidget {
                           ),
                           softWrap: true,
                         ))
-                    .toList()
+                    .toList(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Text(
+                        'Mark as Read ?',
+                        style: GoogleFonts.aBeeZee(
+                          fontWeight: FontWeight.bold,
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                  color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ),
+                    ),
+                    Center(child: MarkAsRead(id: story.id, isTappable: true))
+                  ],
+                ),
               ],
             ),
           ),
