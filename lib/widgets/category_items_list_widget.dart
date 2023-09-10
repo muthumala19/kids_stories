@@ -33,6 +33,12 @@ class _CategoryItemsListState extends ConsumerState<CategoryItemsList>
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+
+    // Calculate the number of columns based on screen width
+    int crossAxisCount = (screenWidth / 200).floor(); // Adjust 200 to your desired card width
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -58,16 +64,18 @@ class _CategoryItemsListState extends ConsumerState<CategoryItemsList>
             child: child,
           );
         },
-        child: GridView(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
           ),
-          children: [
-            for (final category in categories)
-              CategoryItem(
-                category: category,
-              )
-          ],
+          itemBuilder: (ctx, index) {
+            if (index < categories.length) {
+              final category = categories[index];
+              return CategoryItem(category: category);
+            }
+            return null;
+            // return Container(); // Return an empty container for extra items
+          },
         ),
       ),
     );

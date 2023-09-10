@@ -17,16 +17,20 @@ class StoryCard extends StatelessWidget {
 
   String get complexityText =>
       story.complexity.name[0].toUpperCase() +
-      story.complexity.name.substring(1);
+          story.complexity.name.substring(1);
 
   @override
   Widget build(BuildContext context) {
-    double sizedBoxHeight = 5;
-    double titleFontSize = 15;
-    double cardMargin = 10;
-    double cardBorderRadius = 10;
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+
+    // Responsive values
+    double titleFontSize = screenWidth * 0.04;
+    double cardMargin = screenWidth * 0.02;
+    double cardBorderRadius = screenWidth * 0.02;
     double cardElevation = 2;
     int maxLinesOfTitle = 1;
+
     return Card(
       elevation: cardElevation,
       clipBehavior: Clip.hardEdge,
@@ -40,11 +44,10 @@ class StoryCard extends StatelessWidget {
         },
         child: Stack(
           children: [
-
             Hero(
               tag: story.id,
               child: AspectRatio(
-                aspectRatio: 5 / 3,
+                aspectRatio: 5 / 3, // You can calculate this based on screen width
                 child: FadeInImage(
                   placeholder: MemoryImage(kTransparentImage),
                   image: NetworkImage(story.imageUrl),
@@ -70,28 +73,29 @@ class StoryCard extends StatelessWidget {
                           story.title,
                           maxLines: maxLinesOfTitle,
                           textAlign: TextAlign.center,
-                          overflow: TextOverflow.visible,
-                          // to long texts add "..."
-
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                              fontSize: titleFontSize,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                            fontSize: titleFontSize,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: sizedBoxHeight,
-                    ),
+                    const SizedBox(height: 5), // Responsive sized box
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Spacer(),
                         StoryCardTrait(
-                            icon: Icons.schedule,
-                            label: '${story.duration} min'),
+                          icon: Icons.schedule,
+                          label: '${story.duration} min',
+                        ),
                         const Spacer(),
-                        StoryCardTrait(icon: Icons.work, label: complexityText),
+                        StoryCardTrait(
+                          icon: Icons.work,
+                          label: complexityText,
+                        ),
                         const Spacer(),
                       ],
                     )

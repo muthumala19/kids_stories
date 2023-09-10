@@ -28,6 +28,10 @@ class _CategoryScreenState extends ConsumerState<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    // final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+
     int activeTabIndex = ref.watch(bottomNavBarSelectionProvider);
 
     List<Story> stories = ref.watch(storiesProvider);
@@ -70,14 +74,17 @@ class _CategoryScreenState extends ConsumerState<CategoriesScreen> {
       child: Scaffold(
         drawer: const SideDrawer(),
         appBar: AppBar(
-          title: Text(
-            activeAppBarTitle,
-            style: GoogleFonts.aBeeZee(
+          title: FittedBox(
+            child: Text(
+              activeAppBarTitle,
+              style: GoogleFonts.aBeeZee(
                 textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.bold),
-                fontSize: 25),
-            softWrap: true,
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                      fontSize: screenWidth * 0.06, // Responsive font size
+                    ),
+              ),
+            ),
           ),
           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         ),

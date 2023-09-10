@@ -28,7 +28,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 
     await _firebaseAuthentication.signInWithCredential(credential);
     setState(
-      () {
+          () {
         _isAuthenticating = false;
       },
     );
@@ -36,88 +36,84 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+
     return Scaffold(
       body: Container(
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            fit: BoxFit.fitHeight,
-            image: AssetImage(
-              "assets/images/auth_screen_background.png",
-            ),
+            fit: BoxFit.cover,
+            image: AssetImage("assets/images/auth_screen_background.png"),
           ),
         ),
-        child: Stack(fit: StackFit.expand, children: [
-          Container(
-            margin: const EdgeInsets.fromLTRB(10, 200, 10, 0),
-            width: double.infinity,
-            child: DefaultTextStyle(
-              style: TextStyle(
-                  fontSize: 40.0,
+        child: Stack(
+          children: [
+            Positioned(
+              top: screenHeight * 0.2,
+              left: 10,
+              right: 10,
+              child: DefaultTextStyle(
+                style: TextStyle(
+                  fontSize: screenWidth * 0.07,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary),
-              child: AnimatedTextKit(
-                pause: const Duration(milliseconds: 3000),
-                repeatForever: true,
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    "Hello little,\nStep into a World of Fun and Learning! \nCome Inside and Explore!",
-                    speed: const Duration(milliseconds: 150),
-                    textStyle: GoogleFonts.aBeeZee(
-                        color: Theme.of(context).colorScheme.primaryContainer),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 60,
-            child: Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      child: _isAuthenticating
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : Container(
-                              margin: const EdgeInsets.all(20),
-                              width: double.infinity,
-                              child: ElevatedButton.icon(
-                                icon: Image.asset(
-                                  "assets/images/Google__G__Logo.png",
-                                  width: 25,
-                                ),
-                                onPressed: _signInWithGoogle,
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        Theme.of(context).colorScheme.secondary,
-                                    padding: const EdgeInsets.all(15)),
-                                label: Text(
-                                  "SignIn with Google",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge!
-                                      .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                      ),
-                                ),
-                              ),
-                            ),
-                    )
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                child: AnimatedTextKit(
+                  pause: const Duration(milliseconds: 3000),
+                  repeatForever: true,
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      "Hello little,\nStep into a World of Fun and Learning! \nCome Inside and Explore!",
+                      speed: const Duration(milliseconds: 150),
+                      textStyle: GoogleFonts.aBeeZee(
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-          ),
-        ]),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: screenHeight * 0.1,
+              child: Center(
+                child: Column(
+                  children: [
+                    _isAuthenticating
+                        ? const CircularProgressIndicator()
+                        : Container(
+                      margin: const EdgeInsets.all(20),
+                      width: screenWidth * 0.8,
+                      child: ElevatedButton.icon(
+                        icon: Image.asset(
+                          "assets/images/Google__G__Logo.png",
+                          width: screenWidth * 0.05,
+                        ),
+                        onPressed: _signInWithGoogle,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                          Theme.of(context).colorScheme.secondary,
+                          padding: EdgeInsets.all(screenWidth * 0.04),
+                        ),
+                        label: Text(
+                          "Sign In with Google",
+                          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
