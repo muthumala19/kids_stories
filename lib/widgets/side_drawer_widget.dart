@@ -12,6 +12,9 @@ class SideDrawer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final firebaseAuthentication = FirebaseAuth.instance;
     final userEmail = firebaseAuthentication.currentUser!.email;
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -26,12 +29,18 @@ class SideDrawer extends ConsumerWidget {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 CircleAvatar(
-                  radius: 50,
+                  radius: screenWidth * 0.1, // Responsive avatar size
                   child: Image.asset('assets/images/avatar.png'),
                 ),
                 Container(
-                    margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: Text(userEmail!)),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: Text(
+                    userEmail!,
+                    style: TextStyle(
+                      fontSize: screenWidth * 0.04, // Responsive font size
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

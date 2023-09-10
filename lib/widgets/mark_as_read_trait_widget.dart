@@ -23,6 +23,12 @@ class _FavouriteTraitState extends ConsumerState<MarkAsRead> {
   Widget build(BuildContext context) {
     bool isCompleted = ref.watch(markAsReadProvider).contains(widget.id);
 
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+
+    // Calculate icon size based on screen width
+    double iconSize = screenWidth * 0.1; // Adjust the factor as needed
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: Row(
@@ -31,17 +37,20 @@ class _FavouriteTraitState extends ConsumerState<MarkAsRead> {
           InkWell(
             onTap: widget.isTappable
                 ? () {
-                    ref
-                        .read(markAsReadProvider.notifier)
-                        .toggleMarkAsRead(widget.id, !isCompleted);
-                  }
+              ref
+                  .read(markAsReadProvider.notifier)
+                  .toggleMarkAsRead(widget.id, !isCompleted);
+            }
                 : null,
             child: CircleAvatar(
-              backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
+              backgroundColor: Theme.of(context)
+                  .colorScheme
+                  .secondary
+                  .withOpacity(0.7),
               child: Icon(
                 Icons.task_alt_rounded,
-                color: isCompleted ? Colors.green : null,size: 40,
-
+                color: isCompleted ? Colors.green : null,
+                size: iconSize, // Use the calculated icon size
               ),
             ),
           )

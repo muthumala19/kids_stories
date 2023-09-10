@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kids_stories/models/category_model.dart';
 import 'package:kids_stories/providers/stories_provider.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 import '../screens/story_list_for_category_screen.dart';
 
@@ -12,11 +11,16 @@ class CategoryItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    double titleFontSize = 15;
-    double cardMargin = 10;
-    double cardBorderRadius = 10;
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+
+    // Responsive values
+    double titleFontSize = screenWidth * 0.04;
+    double cardMargin = screenWidth * 0.02;
+    double cardBorderRadius = screenWidth * 0.04;
     double cardElevation = 2;
-    int maxLinesOfTitle = 1;
+    double aspectRatio = 2 / 2;
+
     return Card(
       elevation: cardElevation,
       clipBehavior: Clip.hardEdge,
@@ -31,7 +35,6 @@ class CategoryItem extends ConsumerWidget {
               return element.categories.contains(category.id);
             },
           ).toList();
-          // for(){};
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (ctx) => StoriesScreen(
@@ -46,12 +49,10 @@ class CategoryItem extends ConsumerWidget {
         child: Stack(
           children: [
             AspectRatio(
-              aspectRatio: 2 / 2,
-              child: FadeInImage(
-                placeholder: MemoryImage(kTransparentImage),
-                image: AssetImage(category.imagePath),
-                fit: BoxFit.fitWidth,
-                width: double.infinity,
+              aspectRatio: aspectRatio, // Adjusted aspect ratio
+              child: Image.asset(
+                category.imagePath,
+                fit: BoxFit.fitWidth, // Increase size to fully fit the card
               ),
             ),
             Positioned(
@@ -61,7 +62,7 @@ class CategoryItem extends ConsumerWidget {
               child: Container(
                 color: Colors.black45,
                 width: double.infinity,
-                padding: const EdgeInsets.all(5),
+                padding: EdgeInsets.all(screenWidth * 0.02), // Adjusted padding
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -70,15 +71,14 @@ class CategoryItem extends ConsumerWidget {
                       children: [
                         Text(
                           category.title,
-                          maxLines: maxLinesOfTitle,
+                          maxLines: 1,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.visible,
-                          // to long texts add "..."
-
                           style: TextStyle(
-                              fontSize: titleFontSize,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                            fontSize: titleFontSize, // Adjusted font size
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     ),

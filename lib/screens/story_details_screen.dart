@@ -16,17 +16,28 @@ class StoryDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+
+    // Responsive values
+    double titleFontSize = screenWidth * 0.06;
+    double paragraphFontSize = screenWidth * 0.04;
+    double paragraphSpacing = screenWidth * 0.03;
+    double imageAspectRatio = 5 / 3;
+    double sizedBoxHeight = screenWidth * 0.03;
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
           story.title,
           style: GoogleFonts.aBeeZee(
-              textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-              fontSize: 18),
+            textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: titleFontSize,
+            ),
+          ),
           softWrap: true,
         ),
         backgroundColor: backgroundColor,
@@ -54,7 +65,7 @@ class StoryDetailsScreen extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: AspectRatio(
-                          aspectRatio: 5 / 3,
+                          aspectRatio: imageAspectRatio,
                           child: Image.network(
                             story.imageUrl,
                             fit: BoxFit.cover,
@@ -69,36 +80,44 @@ class StoryDetailsScreen extends StatelessWidget {
                   height: 15,
                 ),
                 ...story.paragraphs
-                    .map((paragraph) => Text(
-                          "$paragraph\n",
-                          style: GoogleFonts.aBeeZee(
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                          ),
-                          softWrap: true,
-                        ))
+                    .map((paragraph) => Padding(
+                  padding: EdgeInsets.only(bottom: paragraphSpacing),
+                  child: Text(
+                    "$paragraph\n",
+                    style: GoogleFonts.aBeeZee(
+                      textStyle: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(
+                        color:
+                        Theme.of(context).colorScheme.primary,
+                        fontSize: paragraphFontSize,
+                      ),
+                    ),
+                    softWrap: true,
+                  ),
+                ))
                     .toList(),
+                SizedBox(
+                  height: sizedBoxHeight,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Center(
-                      child: Text(
-                        'Mark as Read ?',
-                        style: GoogleFonts.aBeeZee(
-                          fontWeight: FontWeight.bold,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                  color: Theme.of(context).colorScheme.primary),
+                    Text(
+                      'Mark as Read ?',
+                      style: GoogleFonts.aBeeZee(
+                        fontWeight: FontWeight.bold,
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),
-                    Center(child: MarkAsRead(id: story.id, isTappable: true))
+                    const SizedBox(width: 5),
+                    MarkAsRead(id: story.id, isTappable: true),
                   ],
                 ),
               ],
