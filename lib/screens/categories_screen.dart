@@ -42,7 +42,7 @@ class _CategoryScreenState extends ConsumerState<CategoriesScreen> {
       case 1:
         {
           final favouriteStories = ref.watch(markAsReadProvider);
-          activeAppBarTitle = "All";
+          activeAppBarTitle = "Unread";
           activeContent = activeContent = StoriesScreen(
             backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
             list: stories
