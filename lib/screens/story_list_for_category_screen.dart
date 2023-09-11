@@ -75,9 +75,9 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
         color: widget.backgroundColor,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(20),
-              topLeft: Radius.circular(20),
+            borderRadius:  BorderRadius.only(
+              topRight: Radius.circular(screenWidth*0.05),
+              topLeft: Radius.circular(screenWidth*0.05),
             ),
             color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
           ),

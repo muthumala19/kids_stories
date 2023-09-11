@@ -37,7 +37,7 @@ class _CategoryItemsListState extends ConsumerState<CategoryItemsList>
     final screenWidth = mediaQuery.size.width;
 
     // Calculate the number of columns based on screen width
-    int crossAxisCount = (screenWidth / 200).floor(); // Adjust 200 to your desired card width
+    int crossAxisCount = screenWidth <600?1:2; // Adjust 200 to your desired card width
 
     return Container(
       decoration: BoxDecoration(

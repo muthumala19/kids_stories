@@ -14,39 +14,50 @@ class SideDrawer extends ConsumerWidget {
     final userEmail = firebaseAuthentication.currentUser!.email;
     final mediaQuery = MediaQuery.of(context);
     final screenWidth = mediaQuery.size.width;
+    final screenHeight = mediaQuery.size.height;
 
     return Drawer(
+      width: screenWidth * 0.8, // Responsive drawer width
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondaryContainer,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              textBaseline: TextBaseline.alphabetic,
-              children: [
-                CircleAvatar(
-                  radius: screenWidth * 0.1, // Responsive avatar size
-                  child: Image.asset('assets/images/avatar.png'),
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: Text(
-                    userEmail!,
-                    style: TextStyle(
-                      fontSize: screenWidth * 0.04, // Responsive font size
+          SizedBox(
+            height: screenHeight * 0.4, // Responsive drawer header height
+            child: DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondaryContainer,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  CircleAvatar(
+                    radius: screenHeight * 0.1, // Responsive avatar size
+                    child: Image.asset('assets/images/avatar.png'),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: Text(
+                      userEmail!,
+                      style: TextStyle(
+                        fontSize: screenHeight * 0.03, // Responsive font size
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.home_outlined),
-            title: const Text('Home'),
+            leading: Icon(
+              Icons.home_outlined,
+              size: screenHeight * 0.02,
+            ),
+            title: Text(
+              'Home',
+              style: TextStyle(fontSize: screenHeight * 0.02),
+            ),
             onTap: () {
               ref
                   .read(bottomNavBarSelectionProvider.notifier)
@@ -59,8 +70,8 @@ class SideDrawer extends ConsumerWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text('Sign Out'),
+            leading:  Icon(Icons.logout,size: screenHeight*0.02,),
+            title:  Text('Sign Out',style: TextStyle(fontSize: screenHeight*0.02),),
             onTap: () {
               FirebaseAuth.instance.signOut();
             },
