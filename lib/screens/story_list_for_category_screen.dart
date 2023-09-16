@@ -48,36 +48,35 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final screenWidth = mediaQuery.size.width;
-
     // Responsive values
     double appBarFontSize = screenWidth * 0.05;
 
     return Scaffold(
       appBar: widget.showAppBar
           ? AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: Text(
-          widget.appBarTitle,
-          style: GoogleFonts.aBeeZee(
-            textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: appBarFontSize,
-            ),
-          ),
-          softWrap: true,
-        ),
-        backgroundColor: widget.backgroundColor,
-      )
+              iconTheme: const IconThemeData(color: Colors.white),
+              title: Text(
+                widget.appBarTitle,
+                style: GoogleFonts.aBeeZee(
+                  textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: appBarFontSize,
+                      ),
+                ),
+                softWrap: true,
+              ),
+              backgroundColor: widget.backgroundColor,
+            )
           : null,
       backgroundColor: Theme.of(context).colorScheme.onSecondaryContainer,
       body: Container(
         color: widget.backgroundColor,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius:  BorderRadius.only(
-              topRight: Radius.circular(screenWidth*0.05),
-              topLeft: Radius.circular(screenWidth*0.05),
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(screenWidth * 0.05),
+              topLeft: Radius.circular(screenWidth * 0.05),
             ),
             color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
           ),
@@ -100,31 +99,32 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
             },
             child: widget.list.isEmpty
                 ? Center(
-              child: Text(
-                "OOPs.! Nothing to show.",
-                style: GoogleFonts.aBeeZee(
-                  textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  fontSize: 25,
-                ),
-                softWrap: true,
-              ),
-            )
+                    child: Text(
+                      "OOPs.! Nothing to show.",
+                      style: GoogleFonts.aBeeZee(
+                        textStyle:
+                            Theme.of(context).textTheme.titleLarge!.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                        fontSize: 25,
+                      ),
+                      softWrap: true,
+                    ),
+                  )
                 : ListView.builder(
-              itemCount: widget.list.length,
-              itemBuilder: (context, index) => StoryCard(
-                story: widget.list[index],
-                onTapStoryCard: (story) {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (ctx) => StoryDetailsScreen(
-                        backgroundColor: widget.backgroundColor,
-                        story: story),
-                  ));
-                },
-              ),
-            ),
+                    itemCount: widget.list.length,
+                    itemBuilder: (context, index) => StoryCard(
+                      story: widget.list[index],
+                      onTapStoryCard: (story) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => StoryDetailsScreen(
+                              backgroundColor: widget.backgroundColor,
+                              story: story),
+                        ));
+                      },
+                    ),
+                  ),
           ),
         ),
       ),

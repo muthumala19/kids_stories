@@ -32,18 +32,16 @@ class _CategoryScreenState extends ConsumerState<CategoriesScreen> {
     // final screenHeight = mediaQuery.size.height;
     final screenWidth = mediaQuery.size.width;
 
-    int activeTabIndex = ref.watch(bottomNavBarSelectionProvider);
-
     List<Story> stories = ref.watch(storiesProvider);
     Widget activeContent = const CategoryItemsList();
     String activeAppBarTitle = "Kids Story Categories";
 
-    switch (activeTabIndex) {
+    switch (ref.watch(bottomNavBarSelectionProvider)) {
       case 1:
         {
           final favouriteStories = ref.watch(markAsReadProvider);
-          activeAppBarTitle = "Unread";
-          activeContent = activeContent = StoriesScreen(
+          activeAppBarTitle = "Unread" ;
+          activeContent = StoriesScreen(
             backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
             list: stories
                 .where((element) => !favouriteStories.contains(element.id))
