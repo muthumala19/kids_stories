@@ -35,7 +35,7 @@ class SideDrawer extends ConsumerWidget {
                 children: [
                   CircleAvatar(
                     radius: screenHeight * 0.1, // Responsive avatar size
-                    child: Image.asset('assets/images/avatar.png'),
+                    child: Image.asset('assets/images/avatar.webp'),
                   ),
                   Container(
                     margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
