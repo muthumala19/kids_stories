@@ -27,7 +27,7 @@ class _FavouriteTraitState extends ConsumerState<MarkAsRead> {
     final screenWidth = mediaQuery.size.width;
 
     // Calculate icon size based on screen width
-    double iconSize = screenWidth * 0.1; // Adjust the factor as needed
+    double iconSize = screenWidth * 0.08; // Adjust the factor as needed
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -43,6 +43,7 @@ class _FavouriteTraitState extends ConsumerState<MarkAsRead> {
             }
                 : null,
             child: CircleAvatar(
+              radius: iconSize / 2,
               backgroundColor: Theme.of(context)
                   .colorScheme
                   .secondary

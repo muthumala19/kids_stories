@@ -4,12 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kids_stories/providers/bottom_navigation_provider.dart';
 import 'package:kids_stories/providers/mark_as_read_provider.dart';
 import 'package:kids_stories/providers/stories_provider.dart';
-import 'package:kids_stories/screens/story_list_for_category_screen.dart';
+import 'package:kids_stories/screens/unread_stories_screen.dart';
 import 'package:kids_stories/widgets/side_drawer_widget.dart';
 
-import '../models/story_model.dart';
 import '../widgets/bottom_navigation_bar_widget.dart';
 import '../widgets/category_items_list_widget.dart';
+import 'completed_stories_screen.dart';
 
 class CategoriesScreen extends ConsumerStatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -32,40 +32,20 @@ class _CategoryScreenState extends ConsumerState<CategoriesScreen> {
     // final screenHeight = mediaQuery.size.height;
     final screenWidth = mediaQuery.size.width;
 
-    int activeTabIndex = ref.watch(bottomNavBarSelectionProvider);
-
-    List<Story> stories = ref.watch(storiesProvider);
     Widget activeContent = const CategoryItemsList();
     String activeAppBarTitle = "Kids Story Categories";
 
-    switch (activeTabIndex) {
+    switch (ref.watch(bottomNavBarSelectionProvider)) {
       case 1:
         {
-          final favouriteStories = ref.watch(markAsReadProvider);
-          activeAppBarTitle = "All";
-          activeContent = activeContent = StoriesScreen(
-            backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-            list: stories
-                .where((element) => !favouriteStories.contains(element.id))
-                .toList(),
-            showAppBar: false,
-            appBarTitle: activeAppBarTitle,
-          );
+          activeAppBarTitle = "Unread";
+          activeContent = const UnreadStoriesScreen();
           break;
         }
       case 2:
         {
-          final List<Story> favouriteStories = ref
-              .watch(markAsReadProvider)
-              .map((id) => stories.firstWhere((story) => story.id == id))
-              .toList();
           activeAppBarTitle = "Completed";
-          activeContent = StoriesScreen(
-            backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-            list: favouriteStories,
-            showAppBar: false,
-            appBarTitle: activeAppBarTitle,
-          );
+          activeContent = const CompletedStoriesScreen();
           break;
         }
     }

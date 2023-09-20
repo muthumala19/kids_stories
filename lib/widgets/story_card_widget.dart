@@ -27,7 +27,7 @@ class StoryCard extends StatelessWidget {
     // Responsive values
     double titleFontSize = screenWidth * 0.04;
     double cardMargin = screenWidth * 0.02;
-    double cardBorderRadius = screenWidth * 0.02;
+    double cardBorderRadius = screenWidth*0.05;
     double cardElevation = 2;
     int maxLinesOfTitle = 1;
 
@@ -69,15 +69,17 @@ class StoryCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          story.title,
-                          maxLines: maxLinesOfTitle,
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: titleFontSize,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                        Expanded(
+                          child: Text(
+                            story.title,
+                            maxLines: maxLinesOfTitle,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: titleFontSize,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],

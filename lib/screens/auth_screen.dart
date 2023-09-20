@@ -47,7 +47,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage("assets/images/auth_screen_background.png"),
+            image: AssetImage("assets/images/auth_screen_background.webp"),
           ),
         ),
         child: Stack(
@@ -91,7 +91,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                       width: screenWidth * 0.8,
                       child: ElevatedButton.icon(
                         icon: Image.asset(
-                          "assets/images/Google__G__Logo.png",
+                          "assets/images/Google__G__Logo.webp",
                           width: screenWidth * 0.05,
                         ),
                         onPressed: _signInWithGoogle,

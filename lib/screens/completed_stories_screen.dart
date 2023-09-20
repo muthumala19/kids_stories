@@ -5,28 +5,23 @@ import 'package:kids_stories/screens/story_details_screen.dart';
 import 'package:kids_stories/widgets/story_card_widget.dart';
 
 import '../models/story_model.dart';
+import '../providers/mark_as_read_provider.dart';
+import '../providers/stories_provider.dart';
 
-class StoriesScreen extends ConsumerStatefulWidget {
-  const StoriesScreen({
+class CompletedStoriesScreen extends ConsumerStatefulWidget {
+  const CompletedStoriesScreen({
     Key? key,
-    required this.backgroundColor,
-    required this.list,
-    required this.showAppBar,
-    required this.appBarTitle,
   }) : super(key: key);
 
-  final Color backgroundColor;
-  final List<Story> list;
-  final bool showAppBar;
-  final String appBarTitle;
-
   @override
-  ConsumerState<StoriesScreen> createState() => _StoriesScreenState();
+  ConsumerState<CompletedStoriesScreen> createState() => _CompletedStoriesScreenState();
 }
 
-class _StoriesScreenState extends ConsumerState<StoriesScreen>
+class _CompletedStoriesScreenState extends ConsumerState<CompletedStoriesScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
+  late  List<Story> completedStories;
+  late  List<Story> stories;
 
   @override
   void initState() {
@@ -36,6 +31,8 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
       duration: const Duration(milliseconds: 400),
     );
     _animationController.forward();
+    ref.read(storiesProvider.notifier).fetchFirestoreStories();
+    ref.read(markAsReadProvider.notifier).loadCompletedStoryIdList();
   }
 
   @override
@@ -49,29 +46,17 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
     final mediaQuery = MediaQuery.of(context);
     final screenWidth = mediaQuery.size.width;
     // Responsive values
-    double appBarFontSize = screenWidth * 0.05;
+
+    stories = ref.watch(storiesProvider);
+    completedStories = ref
+        .watch(markAsReadProvider)
+        .map((id) => stories.firstWhere((story) => story.id == id))
+        .toList();
 
     return Scaffold(
-      appBar: widget.showAppBar
-          ? AppBar(
-              iconTheme: const IconThemeData(color: Colors.white),
-              title: Text(
-                widget.appBarTitle,
-                style: GoogleFonts.aBeeZee(
-                  textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: appBarFontSize,
-                      ),
-                ),
-                softWrap: true,
-              ),
-              backgroundColor: widget.backgroundColor,
-            )
-          : null,
       backgroundColor: Theme.of(context).colorScheme.onSecondaryContainer,
       body: Container(
-        color: widget.backgroundColor,
+        color: Theme.of(context).colorScheme.secondaryContainer,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -97,7 +82,7 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
                 child: child,
               );
             },
-            child: widget.list.isEmpty
+            child: completedStories.isEmpty
                 ? Center(
                     child: Text(
                       "OOPs.! Nothing to show.",
@@ -113,13 +98,13 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
                     ),
                   )
                 : ListView.builder(
-                    itemCount: widget.list.length,
+                    itemCount: completedStories.length,
                     itemBuilder: (context, index) => StoryCard(
-                      story: widget.list[index],
+                      story: completedStories[index],
                       onTapStoryCard: (story) {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (ctx) => StoryDetailsScreen(
-                              backgroundColor: widget.backgroundColor,
+                              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
                               story: story),
                         ));
                       },

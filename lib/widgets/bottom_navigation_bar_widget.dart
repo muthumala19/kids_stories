@@ -30,7 +30,7 @@ class _BottomNavigationTabsState extends ConsumerState<BottomNavigationTabs> {
       initialActiveIndex: ref.watch(bottomNavBarSelectionProvider),
       items: const [
         TabItem(icon: Icons.home_outlined, title: 'Home'),
-        TabItem(icon: Icons.all_inclusive_outlined, title: 'All'),
+        TabItem(icon: Icons.all_inclusive_outlined, title: 'Unread'),
         TabItem(
             icon: Icons.task_alt_rounded,
             title: 'Completed'),
