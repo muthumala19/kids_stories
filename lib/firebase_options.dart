@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBhRnTI5fGUbDpAKLTrY3runTvrd8RdPPI',
-    appId: '1:733551193068:android:ff54fcc9f9382470ed2ec9',
+    appId: '1:733551193068:android:11dfbbef775fda0aed2ec9',
     messagingSenderId: '733551193068',
     projectId: 'kids-stories-67585',
     storageBucket: 'kids-stories-67585.appspot.com',
@@ -67,7 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '733551193068',
     projectId: 'kids-stories-67585',
     storageBucket: 'kids-stories-67585.appspot.com',
-    androidClientId: '733551193068-std0fvl0mnu2t7vi8cvvt2rhrano2s35.apps.googleusercontent.com',
+    androidClientId: '733551193068-26toa4fapqnfunr3e1c4nb6aut8h7ecd.apps.googleusercontent.com',
     iosClientId: '733551193068-24cgndhi49s4pvvoo41t3d64bdifq2bl.apps.googleusercontent.com',
     iosBundleId: 'com.example.kidsStories',
   );
@@ -78,7 +78,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '733551193068',
     projectId: 'kids-stories-67585',
     storageBucket: 'kids-stories-67585.appspot.com',
-    androidClientId: '733551193068-std0fvl0mnu2t7vi8cvvt2rhrano2s35.apps.googleusercontent.com',
+    androidClientId: '733551193068-26toa4fapqnfunr3e1c4nb6aut8h7ecd.apps.googleusercontent.com',
     iosClientId: '733551193068-cf53d4565e6qpsbppiue9kuj835lf8a2.apps.googleusercontent.com',
     iosBundleId: 'com.example.kidsStories.RunnerTests',
   );
