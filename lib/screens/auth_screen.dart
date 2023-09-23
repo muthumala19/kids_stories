@@ -28,7 +28,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 
     await _firebaseAuthentication.signInWithCredential(credential);
     setState(
-          () {
+      () {
         _isAuthenticating = false;
       },
     );
@@ -51,29 +51,36 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
           ),
         ),
         child: Stack(
+
           children: [
             Positioned(
-              top: screenHeight * 0.2,
+              top: screenHeight * 0.15,
               left: 10,
               right: 10,
               child: DefaultTextStyle(
                 style: TextStyle(
-                  fontSize: screenWidth * 0.07,
+                  height: 2,letterSpacing: 3,
+                  fontSize: screenWidth * 0.09,
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).colorScheme.primary,
                 ),
-                child: AnimatedTextKit(
-                  pause: const Duration(milliseconds: 3000),
-                  repeatForever: true,
-                  animatedTexts: [
-                    TypewriterAnimatedText(
-                      "Hello little,\nStep into a World of Fun and Learning! \nCome Inside and Explore!",
-                      speed: const Duration(milliseconds: 150),
-                      textStyle: GoogleFonts.aBeeZee(
-                        color: Theme.of(context).colorScheme.primaryContainer,
+                child: Center(
+                  child: AnimatedTextKit(
+                    pause: const Duration(milliseconds: 5000),
+                    repeatForever: true,
+                    animatedTexts: [
+                      TypewriterAnimatedText(
+                        "Hello little,\nStep into a World of \nFun and Learning! \nCome Inside and Explore!",
+                        speed: const Duration(milliseconds: 150),
+                        textAlign: TextAlign.center,
+                        textStyle: GoogleFonts.aBeeZee(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -87,27 +94,31 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     _isAuthenticating
                         ? const CircularProgressIndicator()
                         : Container(
-                      margin: const EdgeInsets.all(20),
-                      width: screenWidth * 0.8,
-                      child: ElevatedButton.icon(
-                        icon: Image.asset(
-                          "assets/images/Google__G__Logo.webp",
-                          width: screenWidth * 0.05,
-                        ),
-                        onPressed: _signInWithGoogle,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.secondary,
-                          padding: EdgeInsets.all(screenWidth * 0.04),
-                        ),
-                        label: Text(
-                          "Sign In with Google",
-                          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
+                            margin: const EdgeInsets.all(20),
+                            width: screenWidth * 0.8,
+                            child: ElevatedButton.icon(
+                              icon: Image.asset(
+                                "assets/images/Google__G__Logo.webp",
+                                width: screenWidth * 0.05,
+                              ),
+                              onPressed: _signInWithGoogle,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.secondary,
+                                padding: EdgeInsets.all(screenWidth * 0.04),
+                              ),
+                              label: Text(
+                                "Sign In with Google",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
