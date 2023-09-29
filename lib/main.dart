@@ -42,11 +42,8 @@ class App extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (snapshot.hasData) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasData) {
             return const CategoriesScreen();
           } else {
             return const AuthScreen();

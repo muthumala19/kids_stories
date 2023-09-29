@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBhRnTI5fGUbDpAKLTrY3runTvrd8RdPPI',
-    appId: '1:733551193068:android:11dfbbef775fda0aed2ec9',
+    appId: '1:733551193068:android:f160da49605ec31ded2ec9',
     messagingSenderId: '733551193068',
     projectId: 'kids-stories-67585',
     storageBucket: 'kids-stories-67585.appspot.com',

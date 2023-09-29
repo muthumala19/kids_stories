@@ -21,17 +21,26 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     setState(() {
       _isAuthenticating = true;
     });
-    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    GoogleSignInAuthentication? googleAuth = await googleUser!.authentication;
-    AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-
-    await _firebaseAuthentication.signInWithCredential(credential);
-    setState(
-      () {
-        _isAuthenticating = false;
-      },
-    );
+    try {
+      final googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        setState(() {
+          _isAuthenticating = false;
+        });
+        return;
+      }
+      final googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      await _firebaseAuthentication.signInWithCredential(credential);
+    } catch (error) {
+      print(error);
+    }
+    setState(() {
+      _isAuthenticating = false;
+    });
   }
 
   @override
